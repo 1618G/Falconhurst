@@ -1,0 +1,32 @@
+services:
+  falconhurst:
+    image: nginx:alpine
+    container_name: falconhurst-web
+    restart: unless-stopped
+    volumes:
+      - /home/deploy/apps/falconhurst:/usr/share/nginx/html:ro
+      - /home/deploy/apps/falconhurst/deploy/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    networks:
+      - proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=proxy"
+      - "traefik.http.routers.falconhurst.rule=Host(`falconhurst.zzagroup.cloud`)"
+      - "traefik.http.routers.falconhurst.entrypoints=websecure"
+      - "traefik.http.routers.falconhurst.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.falconhurst.service=falconhurst"
+      - "traefik.http.services.falconhurst.loadbalancer.server.port=80"
+      - "traefik.http.routers.falconhurst-custom.rule=Host(`www.robinhoodsbaylet.co.uk`) || Host(`robinhoodsbaylet.co.uk`)"
+      - "traefik.http.routers.falconhurst-custom.entrypoints=websecure"
+      - "traefik.http.routers.falconhurst-custom.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.falconhurst-custom.service=falconhurst"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf http://localhost/ > /dev/null || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+networks:
+  proxy:
+    external: true
