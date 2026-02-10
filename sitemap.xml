@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+    
+    <!-- Homepage -->
+    <url>
+        <loc>https://falconhurstbay.co.uk/</loc>
+        <lastmod>2026-01-08</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+        <image:image>
+            <image:loc>https://falconhurstbay.co.uk/images/falconhurst-1.webp</image:loc>
+            <image:title>Falconhurst Holiday Let exterior in Robin Hoods Bay</image:title>
+            <image:caption>Stunning holiday accommodation in Robin Hoods Bay near Whitby</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://falconhurstbay.co.uk/images/falconhurst-2.webp</image:loc>
+            <image:title>Falconhurst bedroom</image:title>
+            <image:caption>Comfortable king-size bedroom at Falconhurst holiday let</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://falconhurstbay.co.uk/images/falconhurst-3.webp</image:loc>
+            <image:title>Falconhurst kitchen</image:title>
+            <image:caption>Modern fully-equipped kitchen</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://falconhurstbay.co.uk/images/falconhurst-4.webp</image:loc>
+            <image:title>Sea views from Falconhurst</image:title>
+            <image:caption>Beautiful sea views from Falconhurst holiday apartment</image:caption>
+        </image:image>
+    </url>
+    
+    <!-- Blog -->
+    <url>
+        <loc>https://falconhurstbay.co.uk/blog.html</loc>
+        <lastmod>2026-01-08</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://falconhurstbay.co.uk/images/village-1.webp</image:loc>
+            <image:title>Robin Hoods Bay village</image:title>
+            <image:caption>Historic fishing village of Robin Hoods Bay</image:caption>
+        </image:image>
+    </url>
+    
+    <!-- Privacy Policy -->
+    <url>
+        <loc>https://falconhurstbay.co.uk/privacy.html</loc>
+        <lastmod>2026-01-08</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
+    
+</urlset>

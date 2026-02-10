@@ -1,0 +1,8 @@
+# OS files
+.DS_Store
+
+# Deploy artifacts
+*.zip
+
+# Ignore cursor AI rules
+.cursor/rules/codacy.mdc
