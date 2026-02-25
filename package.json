@@ -1,0 +1,15 @@
+{
+  "name": "falconhurst",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Falconhurst Holiday Let - Static Site",
+  "scripts": {
+    "build:css": "cleancss -o styles.min.css styles.css",
+    "build:js": "terser script.js -o script.min.js -c -m",
+    "build": "npm run build:css && npm run build:js"
+  },
+  "devDependencies": {
+    "clean-css-cli": "^5.6.3",
+    "terser": "^5.37.0"
+  }
+}

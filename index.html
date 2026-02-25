@@ -125,7 +125,7 @@
         .nav-menu { display: flex; align-items: center; gap: var(--space-lg); list-style: none; }
         .nav-link { font-size: 0.9rem; font-weight: 500; color: rgba(255, 255, 255, 0.9); text-decoration: none; transition: color var(--transition-fast); position: relative; }
         .navbar.scrolled .nav-link { color: var(--color-text); }
-        .nav-cta { background: var(--color-coral); color: var(--color-white) !important; padding: 0.5rem 1.25rem; border-radius: var(--radius-full); }
+        .nav-cta { background: #a96b53; color: var(--color-white) !important; padding: 0.5rem 1.25rem; border-radius: var(--radius-full); }
         .nav-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 5px; }
         .nav-toggle span { width: 25px; height: 2px; background: var(--color-white); transition: all var(--transition-base); }
         .hero { position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; }
@@ -162,8 +162,8 @@
     </style>
 
     <!-- Full Stylesheet - Deferred for performance -->
-    <link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="styles.css"></noscript>
+    <link rel="preload" href="styles.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="styles.min.css"></noscript>
     
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏠</text></svg>">
@@ -442,7 +442,16 @@
     <!-- Hero Section -->
     <header class="hero" id="hero">
         <div class="hero-carousel">
-            <div class="hero-slide active" style="background-image: url('images/village-1.webp')"></div>
+            <div class="hero-slide active">
+                <img src="images/village-1.webp"
+                     srcset="images/responsive/village-1-400w.webp 400w,
+                             images/responsive/village-1-800w.webp 800w,
+                             images/village-1.webp 1200w"
+                     sizes="100vw"
+                     alt="Robin Hoods Bay village and coastline"
+                     width="1200" height="675"
+                     fetchpriority="high">
+            </div>
             <div class="hero-slide" style="background-image: url('images/falconhurst-2.webp')"></div>
             <div class="hero-slide" style="background-image: url('images/falconhurst-3.webp')"></div>
             <div class="hero-slide" style="background-image: url('images/falconhurst-4.webp')"></div>
@@ -965,7 +974,7 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="script.js" defer></script>
+    <script src="script.min.js" defer></script>
     <script src="cookie-consent.js" defer></script>
 </body>
 </html>

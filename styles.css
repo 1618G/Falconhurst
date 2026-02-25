@@ -349,7 +349,7 @@ body:has(.page-content) .nav-toggle span {
 }
 
 .nav-cta {
-    background: var(--color-coral);
+    background: #a96b53;
     color: var(--color-white) !important;
     padding: 0.5rem 1.25rem;
     border-radius: var(--radius-full);
@@ -360,7 +360,7 @@ body:has(.page-content) .nav-toggle span {
 }
 
 .nav-cta:hover {
-    background: var(--color-coral-light);
+    background: var(--color-coral);
     color: var(--color-ocean-deep) !important;
 }
 
@@ -716,23 +716,24 @@ body:has(.page-content) .nav-toggle span {
 .gallery-dots {
     display: flex;
     justify-content: center;
-    gap: var(--space-xs);
+    gap: var(--space-sm);
     margin-top: var(--space-lg);
 }
 
 .gallery-dot {
-    width: 10px;
-    height: 10px;
+    width: 24px;
+    height: 24px;
     border-radius: 50%;
     background: var(--color-sand-dark);
     border: none;
     cursor: pointer;
     transition: all var(--transition-base);
+    padding: 0;
 }
 
 .gallery-dot.active {
     background: var(--color-ocean-mid);
-    transform: scale(1.2);
+    transform: scale(1.15);
 }
 
 /* ===================================
@@ -1030,7 +1031,7 @@ body:has(.page-content) .nav-toggle span {
 .review-avatar {
     width: 48px;
     height: 48px;
-    background: var(--color-ocean-light);
+    background: #3d6d85;
     color: var(--color-white);
     border-radius: 50%;
     display: flex;
@@ -1212,7 +1213,7 @@ body:has(.page-content) .nav-toggle span {
 
 .footer-location {
     font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.75);
     margin-bottom: 0;
 }
 
@@ -1265,8 +1266,17 @@ body:has(.page-content) .nav-toggle span {
 
 .footer-bottom p {
     font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.75);
     margin: 0;
+}
+
+.footer-bottom a {
+    color: rgba(255, 255, 255, 0.75);
+    margin-left: var(--space-sm);
+}
+
+.footer-bottom a:hover {
+    color: var(--color-coral-light);
 }
 
 /* ===================================
@@ -2125,23 +2135,35 @@ body:has(.page-content) .nav-toggle span {
     .review-card::before { opacity: 0.3; transform: none; }
 }
 
-/* Loading state for images */
-.gallery-slide img,
-.welcome-image img,
-.location-image img {
+/* Loading state for images - transform-based for GPU compositing */
+.gallery-slide,
+.welcome-image,
+.location-image {
+    position: relative;
+    overflow: hidden;
+    background: var(--color-sand-light);
+}
+
+.gallery-slide::before,
+.welcome-image::before,
+.location-image::before {
+    content: '';
+    position: absolute;
+    inset: 0;
     background: linear-gradient(
         90deg,
-        var(--color-sand-light) 0%,
+        transparent 0%,
         var(--color-sand-cream) 50%,
-        var(--color-sand-light) 100%
+        transparent 100%
     );
-    background-size: 200% 100%;
     animation: shimmer 1.5s infinite;
+    z-index: 1;
+    pointer-events: none;
 }
 
 @keyframes shimmer {
-    0% { background-position: 200% 0; }
-    100% { background-position: -200% 0; }
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
 }
 
 /* Form success state */

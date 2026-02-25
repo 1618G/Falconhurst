@@ -118,6 +118,9 @@ rsync -avz --progress \
     --exclude '.codacy' \
     --exclude '*.zip' \
     --exclude 'node_modules' \
+    --exclude 'package.json' \
+    --exclude 'package-lock.json' \
+    --exclude '.eslintrc.json' \
     --exclude 'scripts' \
     --exclude 'CHANGELOG.md' \
     --exclude 'README.md' \
