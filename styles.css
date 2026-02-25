@@ -584,6 +584,27 @@ body:has(.page-content) .nav-toggle span {
 }
 
 /* ===================================
+   Story Section
+   =================================== */
+.story {
+    padding: var(--space-2xl) 0;
+    background: var(--color-sand-light);
+}
+
+.story-content {
+    max-width: 780px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.story-content p {
+    font-size: 1.1rem;
+    color: var(--color-text-light);
+    line-height: 1.8;
+    margin-bottom: var(--space-md);
+}
+
+/* ===================================
    Gallery Section
    =================================== */
 .gallery {
@@ -748,6 +769,60 @@ body:has(.page-content) .nav-toggle span {
     font-weight: 500;
 }
 
+.about-features-list {
+    max-width: 700px;
+    margin: 0 auto var(--space-lg);
+    text-align: center;
+}
+
+.rooms-list {
+    list-style: none;
+    text-align: left;
+    max-width: 520px;
+    margin: 0 auto var(--space-lg);
+}
+
+.rooms-list li {
+    padding: var(--space-xs) 0;
+    padding-left: var(--space-md);
+    position: relative;
+    color: var(--color-text-light);
+    font-size: 1.05rem;
+}
+
+.rooms-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 8px;
+    background: var(--color-coral);
+    border-radius: 50%;
+}
+
+.about-summary {
+    font-size: 1.1rem;
+    color: var(--color-text-light);
+    font-style: italic;
+}
+
+.about-card-note .about-card-icon {
+    background: var(--color-sand-light);
+}
+
+.about-card-note .about-card-icon svg {
+    color: var(--color-coral);
+}
+
+.about-grid + .about-grid {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 /* ===================================
    Location Section
    =================================== */
@@ -803,6 +878,50 @@ body:has(.page-content) .nav-toggle span {
     height: 8px;
     background: var(--color-coral);
     border-radius: 50%;
+}
+
+/* ===================================
+   Award Section
+   =================================== */
+.award {
+    padding: var(--space-2xl) 0;
+    background: var(--color-white);
+}
+
+.award-content {
+    max-width: 780px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.award-intro {
+    font-size: 1.1rem;
+    color: var(--color-text-light);
+    margin-bottom: var(--space-lg);
+}
+
+.award-intro strong {
+    color: var(--color-ocean-deep);
+}
+
+.award-quote {
+    background: var(--color-sand-light);
+    border-left: 4px solid var(--color-coral);
+    padding: var(--space-lg);
+    border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+    text-align: left;
+    margin: 0;
+}
+
+.award-quote p {
+    font-style: italic;
+    color: var(--color-text-light);
+    line-height: 1.8;
+    margin-bottom: var(--space-sm);
+}
+
+.award-quote p:last-child {
+    margin-bottom: 0;
 }
 
 /* ===================================
@@ -1132,10 +1251,11 @@ body:has(.page-content) .nav-toggle span {
         gap: var(--space-lg);
     }
     
-    .about-grid {
+    .about-grid,
+    .about-grid + .about-grid {
         grid-template-columns: 1fr;
         max-width: 500px;
-        margin: 0 auto;
+        margin: 0 auto !important;
     }
     
     .location {

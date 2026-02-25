@@ -23,8 +23,6 @@ function initNavigation() {
     const navLinks = document.querySelectorAll('.nav-link');
 
     // Scroll effect for navbar
-    let lastScroll = 0;
-    
     window.addEventListener('scroll', () => {
         const currentScroll = window.pageYOffset;
         
@@ -34,8 +32,6 @@ function initNavigation() {
         } else {
             navbar.classList.remove('scrolled');
         }
-        
-        lastScroll = currentScroll;
     });
 
     // Mobile menu toggle

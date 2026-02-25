@@ -1,3 +1,6 @@
+# V7.3 Docker Safety: COMPOSE_PROJECT_NAME prevents cross-app conflicts on shared VPS
+name: falconhurst
+
 services:
   falconhurst:
     image: nginx:alpine
@@ -11,17 +14,19 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=proxy"
+      # ZZA cloud domain
       - "traefik.http.routers.falconhurst.rule=Host(`falconhurst.zzagroup.cloud`)"
       - "traefik.http.routers.falconhurst.entrypoints=websecure"
       - "traefik.http.routers.falconhurst.tls.certresolver=letsencrypt"
       - "traefik.http.routers.falconhurst.service=falconhurst"
       - "traefik.http.services.falconhurst.loadbalancer.server.port=80"
-      - "traefik.http.routers.falconhurst-custom.rule=Host(`www.robinhoodsbaylet.co.uk`) || Host(`robinhoodsbaylet.co.uk`)"
+      # Custom domains
+      - "traefik.http.routers.falconhurst-custom.rule=Host(`www.robinhoodsbaylet.co.uk`) || Host(`robinhoodsbaylet.co.uk`) || Host(`falconhurstbay.co.uk`) || Host(`www.falconhurstbay.co.uk`)"
       - "traefik.http.routers.falconhurst-custom.entrypoints=websecure"
       - "traefik.http.routers.falconhurst-custom.tls.certresolver=letsencrypt"
       - "traefik.http.routers.falconhurst-custom.service=falconhurst"
     healthcheck:
-      test: ["CMD-SHELL", "curl -sf http://localhost/ > /dev/null || exit 1"]
+      test: ["CMD-SHELL", "curl -sf http://localhost/health > /dev/null || exit 1"]
       interval: 30s
       timeout: 5s
       retries: 3

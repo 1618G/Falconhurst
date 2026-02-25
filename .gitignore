@@ -1,8 +1,73 @@
+# ============================================
+# Falconhurst .gitignore (ZZA V7.3)
+# ============================================
+
 # OS files
 .DS_Store
+Thumbs.db
 
 # Deploy artifacts
 *.zip
+*.tar
+*.tar.gz
 
-# Ignore cursor AI rules
+# Environment & Secrets
+.env
+.env.local
+.env.*.local
+.env.development
+.env.staging
+.env.production
+.env.test
+
+# Credential files
+*.key
+*.pem
+*.crt
+credentials.json
+service-account*.json
+
+# Credential documentation
+*CREDENTIAL*.md
+*PASSWORD*.md
+*SECRET*.md
+SECURE_*.md
+*_CREDENTIALS.md
+LOGIN_INFO*.md
+API_KEYS*.md
+
+# IDE
+.vscode/
+!.vscode/settings.json
+!.vscode/extensions.json
+.idea/
+
+# Build outputs
+build/
+dist/
+.cache/
+out/
+
+# Dependencies
+node_modules/
+
+# Testing
+coverage/
+test-results/
+
+# Docker
+docker-images/
+*.image.tar.gz
+
+# Logs
+*.log
+logs/
+
+# Backups
+backups/
+*.sql
+*.sql.gz
+*.dump
+
+# Cursor AI rules (auto-generated)
 .cursor/rules/codacy.mdc
