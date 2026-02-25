@@ -3,6 +3,32 @@
    A light, airy coastal aesthetic
    =================================== */
 
+/* Self-hosted fonts */
+@font-face {
+    font-family: 'Cormorant Garamond';
+    font-style: normal;
+    font-weight: 400 700;
+    font-display: swap;
+    src: url(fonts/cormorant-garamond-latin.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+    font-family: 'Cormorant Garamond';
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
+    src: url(fonts/cormorant-garamond-italic-latin.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+    font-family: 'Nunito Sans';
+    font-style: normal;
+    font-weight: 300 600;
+    font-display: swap;
+    src: url(fonts/nunito-sans-latin.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 /* CSS Variables */
 :root {
     /* Colors - Coastal palette */
@@ -1385,6 +1411,272 @@ body:has(.page-content) .nav-toggle span {
     
     .section-header {
         margin-bottom: var(--space-lg);
+    }
+}
+
+/* ===================================
+   Cookie Consent Banner
+   =================================== */
+.cc-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    opacity: 0;
+    transform: translateY(100%);
+    transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cc-banner.cc-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.cc-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--space-md);
+    background: var(--color-white);
+    border-top: 3px solid var(--color-coral);
+    box-shadow: 0 -4px 30px rgba(26, 58, 82, 0.15);
+}
+
+.cc-simple {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.cc-text {
+    flex: 1;
+}
+
+.cc-text p {
+    font-size: 0.9rem;
+    color: var(--color-text-light);
+    margin: 0;
+    line-height: 1.6;
+}
+
+.cc-text a {
+    color: var(--color-coral);
+    font-weight: 500;
+    text-decoration: underline;
+}
+
+.cc-actions {
+    display: flex;
+    gap: var(--space-xs);
+    flex-shrink: 0;
+}
+
+.cc-btn {
+    padding: 0.6rem 1.25rem;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 500;
+    border: none;
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: all var(--transition-base);
+    white-space: nowrap;
+}
+
+.cc-btn-primary {
+    background: var(--color-ocean-deep);
+    color: var(--color-white);
+}
+
+.cc-btn-primary:hover {
+    background: var(--color-ocean-mid);
+    transform: translateY(-1px);
+}
+
+.cc-btn-outline {
+    background: transparent;
+    color: var(--color-text);
+    border: 1.5px solid var(--color-sand-dark);
+}
+
+.cc-btn-outline:hover {
+    border-color: var(--color-ocean-mid);
+    color: var(--color-ocean-mid);
+}
+
+.cc-btn-link {
+    background: none;
+    color: var(--color-text-muted);
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.cc-btn-link:hover {
+    color: var(--color-ocean-mid);
+}
+
+.cc-detail-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--space-md);
+}
+
+.cc-detail-header h3 {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    color: var(--color-ocean-deep);
+    margin: 0;
+}
+
+.cc-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    padding: 0 0.25rem;
+    line-height: 1;
+    transition: color var(--transition-fast);
+}
+
+.cc-close:hover {
+    color: var(--color-text);
+}
+
+.cc-categories {
+    display: grid;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-md);
+}
+
+.cc-category {
+    padding: var(--space-sm) var(--space-md);
+    background: var(--color-sand-light);
+    border-radius: var(--radius-md);
+}
+
+.cc-category-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 4px;
+}
+
+.cc-category-name {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--color-text);
+}
+
+.cc-always-on {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-ocean-light);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.cc-category-desc {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    margin: 0;
+    line-height: 1.5;
+}
+
+.cc-toggle {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 22px;
+    cursor: pointer;
+}
+
+.cc-toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.cc-toggle-slider {
+    position: absolute;
+    inset: 0;
+    background: var(--color-sand-dark);
+    border-radius: 22px;
+    transition: background var(--transition-base);
+}
+
+.cc-toggle-slider::before {
+    content: '';
+    position: absolute;
+    height: 16px;
+    width: 16px;
+    left: 3px;
+    bottom: 3px;
+    background: var(--color-white);
+    border-radius: 50%;
+    transition: transform var(--transition-base);
+}
+
+.cc-toggle input:checked + .cc-toggle-slider {
+    background: var(--color-ocean-mid);
+}
+
+.cc-toggle input:checked + .cc-toggle-slider::before {
+    transform: translateX(18px);
+}
+
+.cc-toggle input:focus-visible + .cc-toggle-slider {
+    outline: 2px solid var(--color-ocean-mid);
+    outline-offset: 2px;
+}
+
+.cc-detail-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: var(--space-sm);
+    border-top: 1px solid var(--color-sand-dark);
+}
+
+.cc-policy-link {
+    font-size: 0.85rem;
+    color: var(--color-coral);
+}
+
+.cc-detail-actions {
+    display: flex;
+    gap: var(--space-xs);
+}
+
+@media (max-width: 768px) {
+    .cc-simple {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .cc-actions {
+        justify-content: stretch;
+    }
+    
+    .cc-actions .cc-btn {
+        flex: 1;
+        text-align: center;
+    }
+    
+    .cc-detail-footer {
+        flex-direction: column;
+        gap: var(--space-sm);
+        align-items: stretch;
+    }
+    
+    .cc-detail-actions {
+        justify-content: stretch;
+    }
+    
+    .cc-detail-actions .cc-btn {
+        flex: 1;
+        text-align: center;
     }
 }
 

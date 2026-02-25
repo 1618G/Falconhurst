@@ -80,7 +80,7 @@ else
 fi
 
 # Verify required HTML files exist
-for file in index.html blog.html privacy.html styles.css script.js; do
+for file in index.html blog.html privacy.html cookies.html styles.css script.js cookie-consent.js; do
     if [ ! -f "$LOCAL_SOURCE/$file" ]; then
         print_error "Missing required file: $file"
         exit 1
@@ -205,7 +205,7 @@ fi
 # Step 10: Verify all pages load
 # ============================================
 print_step "Verifying all pages load..."
-for page in "/" "/blog.html" "/privacy.html" "/health"; do
+for page in "/" "/blog.html" "/privacy.html" "/cookies.html" "/health"; do
     STATUS=$(curl -s -o /dev/null -w "%{http_code}" "https://$DOMAIN$page" --connect-timeout 10 2>/dev/null || echo "000")
     if [ "$STATUS" = "200" ]; then
         print_success "https://$DOMAIN$page: $STATUS OK"

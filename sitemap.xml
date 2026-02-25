@@ -51,4 +51,12 @@
         <priority>0.3</priority>
     </url>
     
+    <!-- Cookie Policy -->
+    <url>
+        <loc>https://falconhurstbay.co.uk/cookies.html</loc>
+        <lastmod>2026-02-25</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
+    
 </urlset>
