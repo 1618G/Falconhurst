@@ -1389,8 +1389,50 @@ body:has(.page-content) .nav-toggle span {
 }
 
 /* ===================================
+   Scroll Progress Bar
+   =================================== */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--color-coral), var(--color-coral-light));
+    z-index: 1001;
+    transition: none;
+}
+
+/* ===================================
    Animations & Effects
    =================================== */
+
+/* Directional scroll reveals */
+.reveal {
+    opacity: 0;
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal-up { transform: translateY(40px); }
+.reveal-down { transform: translateY(-40px); }
+.reveal-left { transform: translateX(-50px); }
+.reveal-right { transform: translateX(50px); }
+.reveal-scale { transform: scale(0.92); }
+
+.reveal.visible {
+    opacity: 1;
+    transform: translate(0) scale(1);
+}
+
+/* Stagger delays */
+.stagger-1 { transition-delay: 0.08s; }
+.stagger-2 { transition-delay: 0.16s; }
+.stagger-3 { transition-delay: 0.24s; }
+.stagger-4 { transition-delay: 0.32s; }
+.stagger-5 { transition-delay: 0.40s; }
+.stagger-6 { transition-delay: 0.48s; }
+
+/* Legacy fade-in support */
 .fade-in {
     opacity: 0;
     transform: translateY(20px);
@@ -1402,11 +1444,394 @@ body:has(.page-content) .nav-toggle span {
     transform: translateY(0);
 }
 
-/* Stagger animations */
-.stagger-1 { transition-delay: 0.1s; }
-.stagger-2 { transition-delay: 0.2s; }
-.stagger-3 { transition-delay: 0.3s; }
-.stagger-4 { transition-delay: 0.4s; }
+/* Section divider grow animation */
+.section-divider {
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
+}
+
+.section-divider.center {
+    transform-origin: center;
+}
+
+.section-divider.animated {
+    transform: scaleX(1);
+}
+
+/* ===================================
+   Enhanced Button Interactions
+   =================================== */
+.btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at var(--ripple-x, 50%) var(--ripple-y, 50%), rgba(255,255,255,0.3) 0%, transparent 60%);
+    opacity: 0;
+    transform: scale(0);
+    transition: opacity 0.5s, transform 0.5s;
+}
+
+.btn:active::after {
+    opacity: 1;
+    transform: scale(2.5);
+    transition: opacity 0s, transform 0s;
+}
+
+.btn-primary {
+    transition: all var(--transition-base), box-shadow 0.4s ease;
+}
+
+.btn-primary:hover {
+    box-shadow: 0 8px 30px rgba(26, 58, 82, 0.3);
+}
+
+.btn-booking:hover {
+    box-shadow: 0 8px 30px rgba(0, 53, 128, 0.3);
+}
+
+/* ===================================
+   Feature Icon Hover
+   =================================== */
+.feature {
+    transition: transform var(--transition-base);
+}
+
+.feature:hover {
+    transform: translateX(4px);
+}
+
+.feature:hover .feature-icon {
+    background: var(--color-ocean-deep);
+    transform: scale(1.1);
+}
+
+.feature:hover .feature-icon svg {
+    color: var(--color-white);
+}
+
+.feature-icon {
+    transition: background var(--transition-base), transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.feature-icon svg {
+    transition: color var(--transition-base);
+}
+
+/* ===================================
+   Gallery Hover Effects
+   =================================== */
+.gallery-slide {
+    perspective: 800px;
+}
+
+.gallery-slide img {
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.5s ease;
+}
+
+.gallery-slide:hover img {
+    transform: scale(1.03);
+}
+
+.gallery-nav {
+    transition: all var(--transition-base), transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.gallery-nav:hover {
+    transform: translateY(-50%) scale(1.1);
+}
+
+.gallery-nav:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+/* ===================================
+   About Card Enhancements
+   =================================== */
+.about-card {
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow 0.4s ease;
+}
+
+.about-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 16px 40px rgba(26, 58, 82, 0.14);
+}
+
+.about-card:hover .about-card-icon {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.about-card-icon {
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+}
+
+.about-card:hover .about-card-icon {
+    box-shadow: 0 4px 16px rgba(26, 58, 82, 0.12);
+}
+
+/* ===================================
+   Rooms List Reveal
+   =================================== */
+.rooms-list li {
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.rooms-list li::before {
+    transform: translateY(-50%) scale(0);
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.rooms-list.animated li {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.rooms-list.animated li::before {
+    transform: translateY(-50%) scale(1);
+}
+
+.rooms-list li:nth-child(1) { transition-delay: 0.05s; }
+.rooms-list li:nth-child(2) { transition-delay: 0.1s; }
+.rooms-list li:nth-child(3) { transition-delay: 0.15s; }
+.rooms-list li:nth-child(4) { transition-delay: 0.2s; }
+.rooms-list li:nth-child(5) { transition-delay: 0.25s; }
+.rooms-list li:nth-child(6) { transition-delay: 0.3s; }
+
+.rooms-list li:nth-child(1)::before { transition-delay: 0.15s; }
+.rooms-list li:nth-child(2)::before { transition-delay: 0.2s; }
+.rooms-list li:nth-child(3)::before { transition-delay: 0.25s; }
+.rooms-list li:nth-child(4)::before { transition-delay: 0.3s; }
+.rooms-list li:nth-child(5)::before { transition-delay: 0.35s; }
+.rooms-list li:nth-child(6)::before { transition-delay: 0.4s; }
+
+/* ===================================
+   Review Card Quote Decoration
+   =================================== */
+.review-card {
+    position: relative;
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow 0.4s ease;
+}
+
+.review-card::before {
+    content: '\201C';
+    position: absolute;
+    top: var(--space-sm);
+    right: var(--space-md);
+    font-family: var(--font-heading);
+    font-size: 5rem;
+    line-height: 1;
+    color: var(--color-coral-light);
+    opacity: 0;
+    transform: translateY(-10px) scale(0.8);
+    transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    pointer-events: none;
+}
+
+.review-card.visible::before {
+    opacity: 0.3;
+    transform: translateY(0) scale(1);
+}
+
+.review-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 36px rgba(26, 58, 82, 0.14);
+}
+
+.review-card:hover::before {
+    opacity: 0.5;
+}
+
+/* ===================================
+   Award Quote Styling
+   =================================== */
+.award-quote {
+    position: relative;
+    overflow: hidden;
+}
+
+.award-quote::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 0%;
+    background: var(--color-coral);
+    transition: height 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
+}
+
+.award-quote.animated::before {
+    height: 100%;
+}
+
+/* ===================================
+   Welcome Image Reveal
+   =================================== */
+.welcome-image {
+    overflow: hidden;
+}
+
+.welcome-image img {
+    transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.welcome-image:hover img {
+    transform: scale(1.04);
+}
+
+/* ===================================
+   Location Section Parallax Image
+   =================================== */
+.location-image img {
+    transition: transform 0.1s linear;
+    will-change: transform;
+}
+
+/* ===================================
+   Form Field Focus Effects
+   =================================== */
+.form-group {
+    position: relative;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    transition: border-color var(--transition-fast),
+                box-shadow 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    box-shadow: 0 0 0 3px rgba(45, 90, 123, 0.1);
+}
+
+.form-group label {
+    transition: color var(--transition-fast);
+}
+
+.form-group:focus-within label {
+    color: var(--color-ocean-mid);
+}
+
+/* ===================================
+   Contact Item Hover
+   =================================== */
+.contact-item {
+    padding: var(--space-sm);
+    border-radius: var(--radius-md);
+    transition: background var(--transition-base), transform var(--transition-base);
+}
+
+.contact-item:hover {
+    background: var(--color-sand-light);
+    transform: translateX(4px);
+}
+
+.contact-item:hover .contact-icon {
+    background: var(--color-ocean-deep);
+}
+
+.contact-item:hover .contact-icon svg {
+    color: var(--color-white);
+}
+
+.contact-icon {
+    transition: background var(--transition-base);
+}
+
+.contact-icon svg {
+    transition: color var(--transition-base);
+}
+
+/* ===================================
+   Footer Link Hover
+   =================================== */
+.footer-links a {
+    position: relative;
+}
+
+.footer-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--color-coral-light);
+    transition: width var(--transition-base);
+}
+
+.footer-links a:hover::after {
+    width: 100%;
+}
+
+/* ===================================
+   Active Nav Indicator
+   =================================== */
+.nav-link.section-active {
+    color: var(--color-coral-light) !important;
+}
+
+.navbar.scrolled .nav-link.section-active {
+    color: var(--color-coral) !important;
+}
+
+.nav-link.section-active::after {
+    width: 100%;
+}
+
+/* ===================================
+   Hero Parallax
+   =================================== */
+.hero-content {
+    will-change: transform, opacity;
+}
+
+/* ===================================
+   Story Section Text Reveal
+   =================================== */
+.story-content p {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.story-content p.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.story-content p:nth-child(1) { transition-delay: 0.1s; }
+.story-content p:nth-child(2) { transition-delay: 0.25s; }
+.story-content p:nth-child(3) { transition-delay: 0.4s; }
+
+/* ===================================
+   Prefers Reduced Motion
+   =================================== */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .scroll-progress { display: none; }
+    .reveal, .fade-in { opacity: 1; transform: none; }
+    .rooms-list li { opacity: 1; transform: none; }
+    .story-content p { opacity: 1; transform: none; }
+    .section-divider { transform: scaleX(1); }
+    .review-card::before { opacity: 0.3; transform: none; }
+}
 
 /* Loading state for images */
 .gallery-slide img,
